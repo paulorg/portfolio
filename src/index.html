@@ -3,12 +3,93 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap w/ Webpack</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Paulo Germano - Portfolio</title>
   </head>
   <body>
-    <div class="container py-4 px-3 mx-auto">
-      <h1>Hello, Bootstrap and Webpack!</h1>
-      <button class="btn btn-primary">Primary button</button>
+    <a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div class="container-fluid">
+      <div class="row">
+        <aside class="col-sm-3" role="complementary" aria-label="Sidebar">
+          <nav class="navbar navbar-expand-sm sticky-top" role="navigation" aria-label="Main navigation">            
+            <span class="navbar-brand">Paulo Germano</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#main-content">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#work">Latest Work</a>
+                </li>
+              </ul>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="darkModeSwitch" aria-label="Enable dark mode">
+                <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+              </div>
+            </div>
+
+          </nav>
+
+        </aside>
+        <main id="main-content" class="col-sm-9" role="main">
+          <header>
+            <h1>Hello</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dictum purus id neque pretium, ac blandit enim pulvinar. Sed ac massa accumsan, elementum turpis id, euismod lectus. Nunc rhoncus eget ante et tempus. Nulla tristique eget orci eu convallis. Nullam mollis dolor enim, sit amet porta eros laoreet tincidunt. Suspendisse tempor lacus ligula, a mattis orci euismod vitae. Nullam commodo, eros in interdum aliquam, augue eros vehicula nisl, id eleifend nulla nunc quis lectus. Vivamus molestie quam ut fringilla vestibulum. Cras ligula ligula, semper quis purus vel, auctor laoreet sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse non turpis nulla. In ac malesuada nunc. Cras fermentum ipsum turpis, non sollicitudin justo dignissim at. In finibus et dui eu auctor. Mauris iaculis ornare mi non tincidunt. Aenean tortor mauris, mattis eget nisi quis, ullamcorper pellentesque lorem.</p>
+          </header>
+          <div id="about" class="about">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque feugiat tortor eu dolor vehicula tempus. Aliquam ut vulputate nibh. Mauris mollis, massa a consequat accumsan, neque nisl fermentum est, a rutrum massa ligula et mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a arcu risus. Curabitur pulvinar, nisi in condimentum gravida, est massa malesuada risus, vel maximus urna mauris at dolor. Praesent eu dolor id magna dictum consequat. Sed ullamcorper odio sed neque ultrices ultrices. Nulla malesuada lorem augue, id commodo neque accumsan dictum. Vivamus varius ligula in accumsan facilisis. Fusce vehicula tortor vitae libero luctus, sed tincidunt massa congue. Quisque pulvinar pellentesque quam.</p>
+            <p>Pellentesque ex turpis, bibendum sit amet euismod at, fermentum ut enim. Donec finibus at nisi sit amet vulputate. Curabitur ut magna ut nibh euismod viverra. In ut interdum nunc. Proin sed felis at quam finibus cursus. Aliquam a auctor libero. Aenean sapien dui, blandit a efficitur sit amet, imperdiet in augue. Mauris ullamcorper nisi vitae arcu cursus maximus. Pellentesque vel efficitur dolor. Sed finibus lacinia odio, non tincidunt quam luctus ut. Praesent nec libero id nisl tempor finibus vitae vitae mi. Vestibulum luctus dictum magna, at suscipit massa congue nec. Sed quis ex orci. Mauris pretium condimentum justo, a scelerisque lacus semper consectetur. Cras rutrum vulputate massa, a varius ipsum lacinia in. Maecenas tincidunt mi sed magna vestibulum hendrerit.</p>
+          </div>
+          <div id="work" class="work">
+            <h2>Latest Work</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque feugiat tortor eu dolor vehicula tempus. Aliquam ut vulputate nibh. Mauris mollis, massa a consequat accumsan, neque nisl fermentum est, a rutrum massa ligula et mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a arcu risus. Curabitur pulvinar, nisi in condimentum gravida, est massa malesuada risus, vel maximus urna mauris at dolor. Praesent eu dolor id magna dictum consequat. Sed ullamcorper odio sed neque ultrices ultrices. Nulla malesuada lorem augue, id commodo neque accumsan dictum. Vivamus varius ligula in accumsan facilisis. Fusce vehicula tortor vitae libero luctus, sed tincidunt massa congue. Quisque pulvinar pellentesque quam.</p>
+            <ul class="row">
+              <li class="col-sm-6">
+                <a href="#">
+                  <figure>
+                    <img src="https://placehold.co/800x400@2x.png" class="img-thumbnail" alt="Work">
+                    <figcaption>Work</figcaption>
+                  </figure>
+                </a>
+              </li>
+              <li class="col-sm-6">
+                <a href="#">
+                  <figure>
+                    <img src="https://placehold.co/800x400@2x.png" class="img-thumbnail" alt="Work">
+                    <figcaption>Work</figcaption>
+                  </figure>
+                </a>
+              </li>
+              <li class="col-sm-6">
+                <a href="#">
+                  <figure>
+                    <img src="https://placehold.co/800x400@2x.png" class="img-thumbnail" alt="Work">
+                    <figcaption>Work</figcaption>
+                  </figure>
+                </a>
+              </li>
+              <li class="col-sm-6">
+                <a href="#">
+                  <figure>
+                    <img src="https://placehold.co/800x400@2x.png" class="img-thumbnail" alt="Work">
+                    <figcaption>Work</figcaption>
+                  </figure>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <footer role="contentinfo">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque feugiat tortor eu dolor vehicula tempus. Aliquam ut vulputate nibh. Mauris mollis, massa a consequat accumsan, neque nisl fermentum est, a rutrum massa ligula et mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a arcu risus. Curabitur pulvinar, nisi in condimentum gravida, est massa malesuada risus, vel maximus urna mauris at dolor. Praesent eu dolor id magna dictum consequat. Sed ullamcorper odio sed neque ultrices ultrices. Nulla malesuada lorem augue, id commodo neque accumsan dictum. Vivamus varius ligula in accumsan facilisis. Fusce vehicula tortor vitae libero luctus, sed tincidunt massa congue. Quisque pulvinar pellentesque quam.</p>
+          </footer>
+        </main>
+      </div>
     </div>
   </body>
 </html>

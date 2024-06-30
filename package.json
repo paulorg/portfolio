@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "Portfolio pessoal",
+  "description": "Portfolio",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve",

@@ -1,2 +1,84 @@
-// Import all of Bootstrap's CSS
+$font-family-base: "Figtree", sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap');
 @import "bootstrap/scss/bootstrap";
+
+/* Skip Nav */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+}
+
+
+/* Sidebar */
+
+aside{
+   // background: yellow;
+}
+
+@include media-breakpoint-up(sm) {
+    aside{
+        min-height: 100vh;
+    }
+}
+
+/* Main */
+
+main{
+   // background-color: orange;
+
+    .work{
+        ul{
+            list-style: none;
+            margin-right: calc(-0.5* var(--bs-gutter-x));
+            margin-left: calc(-0.5* var(--bs-gutter-x));
+            padding: 0;
+        }        
+    }
+
+}
+
+/* Nav */
+
+.navbar-brand{
+    white-space: wrap;
+}
+@include media-breakpoint-up(sm) {
+    .navbar,
+    .navbar-collapse {
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .navbar-expand-sm .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+    .navbar-brand{
+        width: 100%;
+    }
+    .navbar-expand-sm .navbar-nav .nav-item{
+        
+
+    }
+}

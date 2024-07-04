@@ -25,8 +25,8 @@
 // Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
 
 // Toggle global options
-$enable-gradients: true;
-$enable-shadows: true;
+//$enable-gradients: true;
+//$enable-shadows: true;
 
 $font-family-base: "Figtree", sans-serif;
 
@@ -49,12 +49,12 @@ $font-family-base: "Figtree", sans-serif;
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 // @import "bootstrap/scss/tables";
-// @import "bootstrap/scss/forms";
+@import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
 @import "bootstrap/scss/transitions";
 @import "bootstrap/scss/dropdown";
 // @import "bootstrap/scss/button-group";
-// @import "bootstrap/scss/nav";
+@import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar"; // Requires nav
 // @import "bootstrap/scss/card";
 // @import "bootstrap/scss/breadcrumb";
@@ -84,6 +84,15 @@ $font-family-base: "Figtree", sans-serif;
 //
 // Custom styles
 //
+
+/* Global */
+::selection {
+    background: $yellow;
+}
+body{
+   // background-image: linear-gradient(0deg, #efefef 25%, #ffffff 25%, #ffffff 50%, #efefef 50%, #efefef 75%, #ffffff 75%, #ffffff 100%);
+   // background-size: 32.00px 32.00px;
+}
 
 
 /* Skip Nav */
@@ -118,7 +127,7 @@ $font-family-base: "Figtree", sans-serif;
 aside{
   // background: yellow;
   //max-height: 100vh;
-  border: 1px solid red;
+  //border: 1px solid red;
 }
 
 @include media-breakpoint-up(md){
@@ -126,7 +135,7 @@ aside{
      // display: flex;
      //align-items: stretch;
      nav{
-      border: 1px solid green;;
+      //border: 1px solid green;;
       height: 100vh;
       align-items: stretch;
      }

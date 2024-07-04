@@ -208,12 +208,40 @@ main{
 /* Nav */
 
 .navbar-brand{
-  white-space: wrap;
-  box-sizing: border-box;
-  display: inline-block;
-  margin: 0;
-  
+    white-space: wrap;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    p{
+        font-size: .875rem;
+        font-weight: 400;
+        line-height: 1.25rem;
+        margin: 0;
+        &.lead{
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin: .5rem 0 0;
+        }
+    }
 }
+.navbar,
+.navbar-collapse {
+    .info{
+      width: 100%;
+      margin: .25rem 0 0;
+      border-bottom: 3px solid $hr-border-color;
+      padding-bottom: 1rem;
+      p{
+          color: $secondary;
+          font-size: .75rem;
+          line-height: 1rem;
+          margin: .25rem 0 0;
+      }
+    }
+}
+
 @include media-breakpoint-up(md) {
   .navbar,
   .navbar-collapse {

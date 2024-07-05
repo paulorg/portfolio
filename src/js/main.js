@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-
     const matchPrefersLight = window.matchMedia('(prefers-color-scheme:light)');
     if (matchPrefersLight.matches) {
         document.documentElement.setAttribute('data-bs-theme', 'light');
+
     }
     matchPrefersLight.addEventListener('change', event => {
         document.documentElement.setAttribute('data-bs-theme', event.matches ? "light" : "dark");

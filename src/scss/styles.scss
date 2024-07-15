@@ -10,23 +10,11 @@
 // `body { color: red; }`.
 
 
-//
-// Bring in Bootstrap
-//
-
-// Option 1
-//
-// Import all of Bootstrap's CSS
-
-// @import "bootstrap/scss/bootstrap";
-
-// Option 2
-//
-// Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
-
 // Toggle global options
 //$enable-gradients: true;
 //$enable-shadows: true;
+$body-color: #333;
+//$primary: #333;
 
 $font-family-base: "Figtree", sans-serif;
 
@@ -86,19 +74,27 @@ $font-family-base: "Figtree", sans-serif;
 //
 
 /* Global */
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 ::selection {
     background: $yellow;
 }
 
-body {
-    // background-image: linear-gradient(0deg, #efefef 25%, #ffffff 25%, #ffffff 50%, #efefef 50%, #efefef 75%, #ffffff 75%, #ffffff 100%);
-    // background-size: 32.00px 32.00px;
+a {
+    color: #333;
+    text-decoration: underline solid #888 1px;
 }
 
 
 /* Skip Nav */
-.sr-only {
+
+.skip-nav {
     background-color: $primary;
+    border-radius: 0 0 .5rem .5rem;
     color: $body-bg;
     display: inline-block;
     position: absolute;
@@ -109,10 +105,11 @@ body {
     top: -3rem;
     z-index: 9999;
     transition: top 250ms ease-in-out;
+    text-decoration: underline solid #fff 1px;
 }
 
-.sr-only-focusable:active,
-.sr-only-focusable:focus {
+.skip-nav:active,
+.skip-nav:focus {
     top: 0;
 }
 
@@ -120,21 +117,24 @@ body {
 /* Sidebar */
 
 aside {
-    // background: yellow;
-    //max-height: 100vh;
-    //border: 1px solid red;
+    nav {
+        padding: 0 !important;
+    }
 }
 
 @include media-breakpoint-up(md) {
     aside {
-
-        // display: flex;
-        //align-items: stretch;
         nav {
-            //border: 1px solid green;;
             height: 100vh;
             align-items: stretch;
+            padding-top: 2rem !important;
         }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    aside {
+        padding-right: 2rem !important;
     }
 }
 
@@ -213,11 +213,26 @@ main {
 
 /* Nav */
 
+a.external {
+    position: relative;
+
+    &:after {
+        background: url(../assets/external.svg) no-repeat center center;
+        content: '';
+        display: inline-block;
+        margin: 0;
+        height: 1.5rem;
+        width: 1.5rem;
+        position: absolute;
+    }
+}
+
 .navbar-brand {
     white-space: wrap;
     box-sizing: border-box;
     display: inline-block;
     margin: 0;
+    padding: 0;
 
     p {
         font-size: .875rem;
@@ -230,16 +245,18 @@ main {
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: .5px;
-            margin: .5rem 0 0;
+            margin: 0;
         }
     }
 }
 
-.navbar-toggler{
-    padding: calc(.5rem - 1px);
+.navbar-toggler {
+    padding: .5rem;
     border-radius: .25rem;
     box-sizing: border-box;
-    .navbar-toggler-icon{
+    border: 0;
+
+    .navbar-toggler-icon {
         background: url('../assets/hamburger.svg') no-repeat center center;
         display: block;
         height: 1.5rem;
@@ -251,9 +268,11 @@ main {
 .navbar-collapse {
     .info {
         width: 100%;
-        margin: .25rem 0 0;
+        margin: 0;
         border-bottom: 3px solid $hr-border-color;
-        padding-bottom: 1rem;
+        padding: 0 0 calc(1rem + 1px);
+        margin: 0 0 1rem;
+        box-sizing: border-box;
 
         p {
             color: $secondary;
@@ -261,7 +280,23 @@ main {
             line-height: 1rem;
             margin: .25rem 0 0;
         }
+
     }
+
+    .form-check {
+        // color: $nav-link-color;
+        margin: 1.5rem 0 0;
+
+        &:hover,
+        &:active,
+        &:focus {
+            // color: $nav-link-hover-color;
+        }
+    }
+}
+
+.navbar {
+    padding-top: 1rem !important;
 }
 
 @include media-breakpoint-up(md) {
@@ -271,10 +306,31 @@ main {
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
+
+        .info {
+            padding: 1rem 0 calc(1.5rem + 1px);
+        }
+
+        .form-check {
+            flex-grow: 1;
+            width: 100%;
+            padding-bottom: 2rem;
+            align-content: flex-end;
+        }
+    }
+
+    .navbar {
+        padding-top: 2rem !important;
     }
 
     .navbar-brand {
         width: 100%;
+
+        p {
+            &.lead {
+                margin: .5rem 0 0;
+            }
+        }
     }
 
     .navbar-expand-md .navbar-nav {
@@ -286,5 +342,17 @@ main {
                 padding: .5rem 0;
             }
         }
+    }
+}
+
+/* Dark Mode */
+
+[data-bs-theme="dark"] {
+    a {
+        color: #999;
+    }
+
+    .navbar-toggler-icon {
+        filter: invert(200%);
     }
 }

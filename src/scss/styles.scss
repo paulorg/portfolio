@@ -132,7 +132,29 @@ footer{
 }
 
 .work{
-    background-color: #282828;
+    //margin-top: 100rem;
+   // overflow: visible;
+    //position: relative;
+    div{
+        background-color: #282828;
+    }
+    h2{
+        border: 1px solid red;;
+        display: block;
+        font-size: 15rem;
+        line-height: 1;
+        //position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: -3px;
+        //top: -50rem;
+        width: 100%;
+        &.locked{
+            position: fixed;
+            top: 50%;
+        }
+
+    }
 }
 
 .hero{

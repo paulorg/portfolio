@@ -4,51 +4,58 @@
 
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
+// Arrows effect
 
-//
-// Place any custom JS here
-//
+const section = document.querySelector(".arrow-section");
+const footer = document.querySelector(".footer");
+const cols = 10; // Number of columns in the grid
+const rows = 6; // Number of rows in the grid
+const arrows = [];
 
-var parallaxImage = document.querySelector('.avatar');
-var topPosition = parallaxImage.offsetTop;
+// Function to check if CSS is enabled
+function isCSSEnabled() {
+    const testElement = document.createElement("div");
+    testElement.style.display = "none";
+    document.body.appendChild(testElement);
+    const isHidden = window.getComputedStyle(testElement).display === "none";
+    document.body.removeChild(testElement);
+    return isHidden;
+}
 
-window.addEventListener('resize', function() {
-    topPosition = parallaxImage.offsetTop;
+// Create a grid of arrows
+if (isCSSEnabled() && section) {
+    for (let i = 0; i < rows * cols; i++) {
+        const arrow = document.createElement("div");
+        arrow.classList.add("arrow");
+        arrow.innerHTML = "→";
+        section.appendChild(arrow);
+        arrows.push(arrow);
+    }
+
+    // Track mouse movement and update arrow direction
+    footer.addEventListener("mousemove", (event) => {
+        const { clientX, clientY } = event;
+        const sectionRect = section.getBoundingClientRect();
+
+        arrows.forEach((arrow) => {
+            const arrowRect = arrow.getBoundingClientRect();
+            const arrowX = arrowRect.left + arrowRect.width / 2;
+            const arrowY = arrowRect.top + arrowRect.height / 2;
+
+            // Calculate angle between arrow and cursor
+            const angle = Math.atan2(clientY - arrowY, clientX - arrowX) * (180 / Math.PI);
+            arrow.style.transform = `rotate(${angle}deg)`;
+        });
+    });
+}
+
+
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+// Smooth scroll to top
+scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });
-
-window.addEventListener('scroll', function() {
-    var scrolled = window.scrollY;
-    parallaxImage.style.top = topPosition -(scrolled * 0.2) + 'px'; // Adjust the factor to control the speed of the parallax effect
-  });
-
-
-// // Dark Mode Switch
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     const htmlElement = document.documentElement;
-//     const switchElement = document.getElementById('darkModeSwitch');
-
-//     // Set the default theme to dark if no setting is found in local storage
-//     const currentTheme = localStorage.getItem('bsTheme') || 'light';
-//     htmlElement.setAttribute('data-bs-theme', currentTheme);
-//     switchElement.checked = currentTheme === 'dark';
-
-//     switchElement.addEventListener('change', function () {
-//         if (this.checked) {
-//             htmlElement.setAttribute('data-bs-theme', 'dark');
-//             localStorage.setItem('bsTheme', 'dark');
-//         } else {
-//             htmlElement.setAttribute('data-bs-theme', 'light');
-//             localStorage.setItem('bsTheme', 'light');
-//         }
-//     });
-
-//     const matchPrefersLight = window.matchMedia('(prefers-color-scheme:light)');
-//     if (matchPrefersLight.matches) {
-//         document.documentElement.setAttribute('data-bs-theme', 'light');
-
-//     }
-//     matchPrefersLight.addEventListener('change', event => {
-//         document.documentElement.setAttribute('data-bs-theme', event.matches ? "light" : "dark");
-//     });
-
-// });

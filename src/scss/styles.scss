@@ -13,7 +13,6 @@
 // Toggle global options
 $enable-gradients: false;
 $enable-shadows: false;
-//$body-color: #333;
 
 $primary: #292929;
 
@@ -26,7 +25,7 @@ $font-family-base: "Plus Jakarta Sans", sans-serif;
 
 // Required
 @import "bootstrap/scss/variables";
-@import "bootstrap/scss/variables-dark";
+//@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
@@ -124,14 +123,16 @@ header{
         line-height: 1rem;
         margin: 0;
         position: relative;
-        &:after{
+        display: inline-block;
+        box-sizing: border-box;
+        &:before{
             background: #8cb;
             content: '';
             display: inline-block;
             height: .5rem;
             width: .5rem;
             border-radius: 1rem;
-            margin-left: .5rem
+            margin-right: .5rem
         }
     }
     @include media-breakpoint-up(lg) {
@@ -169,6 +170,8 @@ header{
     p{
         padding-left: 0;
         display: block;
+    }.col-lg-8{
+        z-index: 1;
     }
     @include media-breakpoint-up(lg) {
         padding-top: 7.5rem;
@@ -287,7 +290,7 @@ header{
             left: 0;
             right: 0;
             transform: scale(1, 1);
-            transition: transform 0.5s ease-out, filter 0.5s ease-out;
+            transition: transform 0.25s ease-out, filter 0.25s ease-out;
             transform-origin: center center;
             filter: saturate(.6);
         }
@@ -383,7 +386,7 @@ header{
             margin: calc(1.5rem - 1px) 0 0;
             width: 100%;
             text-indent: 0;
-            transition: .5s text-indent ease-out;
+            transition: .25s text-indent ease-out;
             &:first-child{
                 margin: 0;
             }
@@ -445,11 +448,17 @@ footer{
         pointer-events: auto;
         border-bottom: 1px dotted #5c5b5b;
         text-decoration: none;
-        transition: .5s color ease-out;
+        transition: .25s color ease-out;
         &:after{
-            content: ' ↗';
+            content: ' →';
             padding-left: .25rem;
-            border-bottom: none;
+            transition: .25s padding-left ease-out;
+        }
+        &:hover{
+            &:after{
+                content: ' →';
+                padding-left: .5rem;
+            }    
         }
     }
     ul{
@@ -513,6 +522,7 @@ footer{
         h2{
             font-size: 4rem;
             line-height: 4rem;
+            letter-spacing: -4px;
             margin: 0;
         }
         .arrow {
@@ -521,5 +531,208 @@ footer{
         ul{
             width: 50%;
         }           
+    }
+}
+
+
+
+
+.case{
+    .identification{
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        h2{
+            font-size: 3.5rem;
+            line-height: 4rem;
+            letter-spacing: -3px;
+            font-weight: 600;
+        }
+        h3{
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: 500;
+            margin: 0;
+        }
+        p{
+            margin: 0;
+        }
+        figure{
+            margin-top: 2rem;
+            img{
+                border-radius: 1rem;
+            }
+        }
+        .card{
+            border-top: 1px solid #DCDCCF;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .breadcrumbs{
+            display: inline-block;
+            font-size: .75rem;
+            line-height: 1rem;
+            text-decoration: none;
+            margin: 0 0 1.5rem;
+            border-bottom: 1px dotted #5c5b5b;
+            &:before{
+                content: '←';
+                padding-right: .25rem;
+                transition: .25s padding-right ease-out;
+            }
+            &:hover{
+                &:before{
+                    padding-right: .5rem;
+                }
+    
+            }
+        }
+        @include media-breakpoint-up(lg) {
+            .identification{
+                padding-top: 5rem;
+                padding-bottom: 7.5rem;                
+                h2{
+                    font-size: 5.5rem;
+                    line-height: 6.5rem;
+                    letter-spacing: -4px;
+                }
+                figure{
+                    margin-top: 5rem;
+                }
+            }
+        }        
+    }
+    .content{
+        padding-bottom: 3rem;
+        figure{
+            margin: 1rem 0;
+            img{
+                border-radius: .5rem;
+            }
+            figcaption{
+                display: block;
+                font-size: .75rem;
+                line-height: 1rem;
+                margin: .5rem 0 0;
+                padding: 0;
+                text-wrap: auto;
+            }
+            &.no-margin{
+                margin-top: 0;
+                margin-bottom: 0;
+            }            
+        }
+        h3{
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin: 0 0 .5rem;
+            font-weight: 500;
+        }
+        blockquote{
+            margin: 0 0 .5rem;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-style: italic;
+            font-weight: 400;
+            & + p{
+                font-size: .75rem;
+                line-height: 1rem;
+                margin: 0;
+            }
+        }
+        &.short{
+            padding-bottom: 3rem;
+        }
+        @include media-breakpoint-up(lg) {
+            padding-bottom: 7.5rem;
+            figure{
+                margin: 2.5rem 0;
+            }
+        }
+    }
+    .dark{
+        background-color: $primary;
+        color: #F9F9F9;
+        .content{
+            padding-top: 3rem;
+        }
+        & + .content{
+            padding-top: 3rem;
+        }
+        @include media-breakpoint-up(lg) {
+            .content{
+                padding-top: 7.5rem;
+            }
+            & + .content{
+                padding-top: 7.5rem;
+            }            
+        }
+    }
+    .testimonial{
+        position: relative;
+        padding-left: 4rem;
+        &+ .testimonial{
+            margin: 4rem 0 0;
+        }
+        &:before{
+            content: '“';
+            position: absolute;
+            top: -3rem;
+            left: -0.5rem;
+            font-size: 12rem;
+            line-height: 1;
+            opacity: .05;
+        }
+        @include media-breakpoint-up(lg) {
+            &:before{
+                top: -5rem;
+                left: -3rem;                
+                font-size: 20rem;
+            }
+        }
+    }
+    .recognition{
+        list-style: none;
+        padding-left: 0;
+        margin: 3rem 0 0;
+        li{
+            text-align: center;
+            margin-bottom: 3rem;
+            figure{
+                margin: 0 0 1.5rem;
+                img{
+                    height: 6rem;
+                    width: 6rem;
+                    object-fit: contain;
+                    object-position: center center;
+                }
+            }
+        }
+        p{
+            margin: 0;
+            font-weight: 500;
+            & + p{
+                font-size: .75rem;
+                font-weight: 400;
+                line-height: 1.5;
+            }
+            .big-number{
+                border: 1px dotted #5c5b5b;
+                border-radius: 1rem;
+                display: inline-block;
+                margin: 0 0 1.5rem;
+                height: 6rem;
+                width: 6rem;
+                font-size: 3rem;
+                line-height: 6rem;
+                font-weight: 700;
+                letter-spacing: -5px;     
+                text-align: center;
+                & + span{
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+        }
     }
 }

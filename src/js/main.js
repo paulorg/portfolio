@@ -59,3 +59,17 @@ scrollToTopBtn.addEventListener("click", () => {
         behavior: "smooth"
     });
 });
+
+document.addEventListener("scroll", function () {
+    const scrollTop = window.scrollY;
+    const parallaxImg = document.querySelector(".parallax-img");
+
+    // Moves the image at a slower pace (adjust multiplier for effect strength)
+    parallaxImg.style.transform = `translateY(${scrollTop * 0.2}px)`;
+
+    // Fade effect: Reduce opacity as user scrolls down
+    let opacity = 1 - scrollTop / 800; // Adjust 600 for fade speed
+    parallaxImg.style.opacity = opacity > 0 ? opacity : 0;
+});
+
+console.log("Hey there, inspector! 🕵️‍♂️ I’m just a non-developer trying my hand at creating my online portfolio 😅. Let me know if you’re taking a peek!");

@@ -773,3 +773,28 @@ footer{
         }
     }
 }
+
+/* Exceptions */
+
+.vast-mockup{
+    position: relative;
+    &:after{
+        position: absolute;
+        display: block;
+        content: "";
+        background: url(../assets/vast/animation.gif) no-repeat center center;
+        background-size: cover;
+        height: 46%;
+        width: 37%;
+        top: 23%;
+        left: 37%;
+        z-index: -1;
+        @include media-breakpoint-up(md) {
+            height: 50%;
+        }
+        @include media-breakpoint-up(lg) {
+            top: 28%;
+            height: 46%;
+        }
+    }
+}

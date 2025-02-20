@@ -821,6 +821,17 @@ footer{
     }
 }
 
+.leadership{
+    padding-left: 1rem;
+    li{
+        text-wrap: none;
+        margin-top: .5rem;
+    }
+    @include media-breakpoint-up(lg) {
+        padding-left: 0;
+    }
+}
+
 /* Dark mode adjustments */
 
 [data-bs-theme="dark"] {

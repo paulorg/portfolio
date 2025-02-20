@@ -16,6 +16,7 @@ $enable-shadows: false;
 
 $primary: #292929;
 $yellow: #ffcc00;
+$black: #111;
 $light: #f9f9f9;
 
 $body-color: $primary;
@@ -807,5 +808,21 @@ footer{
             top: 28%;
             height: 46%;
         }
+    }
+}
+
+/* Dark mode adjustments */
+
+[data-bs-theme="dark"] {
+    footer{
+        h2, ul, .arrow-section,{
+            background: $black;
+        }
+    }
+    .dark{
+        background: $black;
+    }
+    #hero h2{
+        text-shadow: 0 0 50px rgba($black, .5);
     }
 }

@@ -130,6 +130,7 @@ header{
         position: relative;
         display: inline-block;
         box-sizing: border-box;
+        text-wrap: auto;
         &:before{
             background: #8cb;
             content: '';

@@ -20,6 +20,7 @@ $black: #111;
 $light: #f9f9f9;
 
 $body-color: $primary;
+$body-bg: $light;
 $body-heading: $primary;
 $link-color: $primary;
 
@@ -808,6 +809,15 @@ footer{
             top: 28%;
             height: 46%;
         }
+    }
+}
+.hi-five{
+
+    text-align: center;
+    img{
+        display: inline-block;
+        border-radius: .5rem;
+        max-width: 300px;
     }
 }
 

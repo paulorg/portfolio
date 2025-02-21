@@ -24,6 +24,9 @@ $body-bg: $light;
 $body-heading: $primary;
 $link-color: $primary;
 
+$modal-backdrop-bg: $primary;
+$modal-backdrop-opacity: 0.65;
+
 $body-bg-dark: $primary;
 $body-color-dark: $light;
 $link-color-dark: $light;
@@ -51,7 +54,7 @@ $font-family-base: "Plus Jakarta Sans", sans-serif;
 // @import "bootstrap/scss/tables";
 //@import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
-//@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/transitions";
 //@import "bootstrap/scss/dropdown";
 // @import "bootstrap/scss/button-group";
 // @import "bootstrap/scss/nav";
@@ -66,7 +69,7 @@ $font-family-base: "Plus Jakarta Sans", sans-serif;
 // @import "bootstrap/scss/list-group";
 //@import "bootstrap/scss/close";
 // @import "bootstrap/scss/toasts";
-//@import "bootstrap/scss/modal"; // Requires transitions
+@import "bootstrap/scss/modal"; // Requires transitions
 // @import "bootstrap/scss/tooltip";
 //@import "bootstrap/scss/popover";
 // @import "bootstrap/scss/carousel";
@@ -845,5 +848,66 @@ footer{
     }
     #hero h2{
         text-shadow: 0 0 50px rgba($black, .5);
+    }
+}
+
+/* Password modal */
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+.modal{
+    .modal-content{
+        border-radius: .5rem;
+        border: 0;
+        padding: 2rem;
+        transition: height .25s ease-out;
+        .modal-header{
+            padding: 0;
+            border: 0;
+            h2{
+                font-size: 1rem;
+                line-height: 1.5rem;
+                margin: 0;
+                font-weight: 600;
+            }
+        }
+        .modal-body{
+            padding: 0;
+            p{
+                text-wrap: auto;
+                font-size: .75rem;
+                line-height: 1rem;
+            }
+            input{
+                border: 1px solid $gray-500;
+                border-radius: .25rem;
+                padding: .5rem;
+                font-size: .75rem;
+                line-height: 1rem;
+                width: 100%;
+            }
+            small{
+                font-size: .75rem;
+                line-height: 1rem;
+                margin: .5rem 0 0;
+            }
+        }
+        .modal-footer{
+            padding: 1rem 0 0;
+            border: 0;
+            justify-content: flex-start;
+            .btn{
+                margin: 0;
+            }
+        }
     }
 }

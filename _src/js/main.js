@@ -2,7 +2,7 @@
 //
 // This includes Popper and all of Bootstrap's JS plugins.
 
-//import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // Arrows effect
 
@@ -83,6 +83,51 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
     document.documentElement.setAttribute("data-bs-theme", event.matches ? "dark" : "light");
 });
+
+//Password
+const correctPassword = "Paulo-2025";
+const sessionKey = "portfolioAccess";
+let modalElement = document.getElementById("passwordModal");
+let modal = new bootstrap.Modal(modalElement);
+let passwordInput = document.getElementById("passwordInput");
+let errorMessage = document.getElementById("error-message");
+let submitBtn = document.getElementById("submitBtn");
+
+function checkPassword() {
+    const enteredPassword = passwordInput.value;
+
+    if (enteredPassword === correctPassword) {
+        sessionStorage.setItem(sessionKey, "granted");
+        modal.hide();
+        showPortfolio();
+    } else {
+        errorMessage.classList.remove("visually-hidden");
+        modalElement.classList.add("shake");
+        passwordInput.setAttribute("aria-invalid", "true");  // Screen readers detect invalid input
+        passwordInput.focus();  // Keep focus on input field
+        setTimeout(() => modalElement.classList.remove("shake"), 300);
+    }
+}
+
+function showPortfolio() {
+    document.getElementById("portfolioContent").style.display = "block";
+}
+
+function checkAccess() {
+    if (sessionStorage.getItem(sessionKey) === "granted") {
+        showPortfolio();
+    } else {
+        modal.show();
+        setTimeout(() => passwordInput.focus(), 500);  // Auto-focus input when modal opens
+    }
+}
+
+document.addEventListener("DOMContentLoaded", checkAccess);
+submitBtn.addEventListener("click", checkPassword);
+passwordInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") checkPassword();  // Allow Enter key to submit
+});
+
 
 
 console.log("Hey there, inspector! 🕵️‍♂️ I’m just a non-developer trying my hand at creating my online portfolio 😅. Let me know if you’re taking a peek!");

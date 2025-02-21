@@ -849,6 +849,17 @@ footer{
     #hero h2{
         text-shadow: 0 0 50px rgba($black, .5);
     }
+    .modal{
+        .modal-content{
+            background: $black;
+        }
+        .modal-footer{
+            .btn{
+                background-color: $light;
+                color: $primary;
+            }
+        }
+    }
 }
 
 /* Password modal */
@@ -886,9 +897,13 @@ footer{
                 text-wrap: auto;
                 font-size: .75rem;
                 line-height: 1rem;
+                a{
+                    border-bottom: 1px dotted $gray-600;
+                    text-decoration: none;
+                }
             }
             input{
-                border: 1px solid $gray-500;
+                border: 1px solid $gray-600;
                 border-radius: .25rem;
                 padding: .5rem;
                 font-size: .75rem;

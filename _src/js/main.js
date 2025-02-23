@@ -61,17 +61,21 @@ scrollToTopBtn.addEventListener("click", () => {
     });
 });
 
-document.addEventListener("scroll", function () {
-    const scrollTop = window.scrollY;
-    const parallaxImg = document.querySelector(".parallax-img");
+if (window.location.href.replaceAll(window.location.origin, '').replaceAll('/','').length === 0 ) {
 
-    // Moves the image at a slower pace (adjust multiplier for effect strength)
-    parallaxImg.style.transform = `translateY(${scrollTop * 0.2}px)`;
+    document.addEventListener("scroll", function () {
+        const scrollTop = window.scrollY;
+        const parallaxImg = document.querySelector(".parallax-img");
 
-    // Fade effect: Reduce opacity as user scrolls down
-    let opacity = 1 - scrollTop / 800; // Adjust 600 for fade speed
-    parallaxImg.style.opacity = opacity > 0 ? opacity : 0;
-});
+        // Moves the image at a slower pace (adjust multiplier for effect strength)
+        parallaxImg.style.transform = `translateY(${scrollTop * 0.2}px)`;
+
+        // Fade effect: Reduce opacity as user scrolls down
+        let opacity = 1 - scrollTop / 800; // Adjust 600 for fade speed
+        parallaxImg.style.opacity = opacity > 0 ? opacity : 0;
+    });
+    
+}
 
 // Check system preference
 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -100,7 +104,6 @@ function checkPassword() {
     if (enteredPassword === correctPassword) {
         sessionStorage.setItem(sessionKey, "granted");
         modal.hide();
-        showPortfolio();
     } else {
         errorMessage.classList.remove("visually-hidden");
         modalElement.classList.add("shake");
@@ -110,13 +113,9 @@ function checkPassword() {
     }
 }
 
-function showPortfolio() {
-    document.getElementById("portfolioContent").style.display = "block";
-}
-
 function checkAccess() {
     if (sessionStorage.getItem(sessionKey) === "granted") {
-        showPortfolio();
+        
     } else {
         modal.show();
         setTimeout(() => passwordInput.focus(), 500);  // Auto-focus input when modal opens

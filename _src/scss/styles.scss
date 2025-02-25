@@ -673,7 +673,7 @@ footer{
             padding-bottom: 3rem;
         }
         .learnings{
-            padding-left: 0;
+            padding-left: 1rem;
             li{
                 margin-top: .5rem;
             }
@@ -683,6 +683,9 @@ footer{
             figure{
                 margin-top: 2.5rem;
                 margin-bottom: 2.5rem;
+            }
+            .learnings{
+                padding-left: 0;
             }
         }
     }

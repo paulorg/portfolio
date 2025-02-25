@@ -1,133 +1,127 @@
-// Import the Bootstrap bundle
-//
-// This includes Popper and all of Bootstrap's JS plugins.
+(() => {
+    "use strict"; // Enforce strict mode for better error handling
 
-//import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js";
+    // ✅ 1. Arrow Effect - Follow Mouse
+    const section = document.querySelector(".arrow-section");
+    const footer = document.querySelector(".footer");
+    const cols = 10, rows = 6;
+    const arrows = [];
 
-// Arrows effect
-
-const section = document.querySelector(".arrow-section");
-const footer = document.querySelector(".footer");
-const cols = 10; // Number of columns in the grid
-const rows = 6; // Number of rows in the grid
-const arrows = [];
-
-// Function to check if CSS is enabled
-function isCSSEnabled() {
-    const testElement = document.createElement("div");
-    testElement.style.display = "none";
-    document.body.appendChild(testElement);
-    const isHidden = window.getComputedStyle(testElement).display === "none";
-    document.body.removeChild(testElement);
-    return isHidden;
-}
-
-// Create a grid of arrows
-if (isCSSEnabled() && section) {
-    for (let i = 0; i < rows * cols; i++) {
-        const arrow = document.createElement("div");
-        arrow.classList.add("arrow");
-        arrow.innerHTML = "→";
-        section.appendChild(arrow);
-        arrows.push(arrow);
+    function isCSSEnabled() {
+        const testElement = document.createElement("div");
+        testElement.style.display = "none";
+        document.body.appendChild(testElement);
+        const isHidden = window.getComputedStyle(testElement).display === "none";
+        document.body.removeChild(testElement);
+        return isHidden;
     }
 
-    // Track mouse movement and update arrow direction
-    footer.addEventListener("mousemove", (event) => {
-        const { clientX, clientY } = event;
-        const sectionRect = section.getBoundingClientRect();
+    if (isCSSEnabled() && section) {
+        for (let i = 0; i < rows * cols; i++) {
+            const arrow = document.createElement("div");
+            arrow.classList.add("arrow");
+            arrow.innerHTML = "→";
+            section.appendChild(arrow);
+            arrows.push(arrow);
+        }
 
-        arrows.forEach((arrow) => {
-            const arrowRect = arrow.getBoundingClientRect();
-            const arrowX = arrowRect.left + arrowRect.width / 2;
-            const arrowY = arrowRect.top + arrowRect.height / 2;
-
-            // Calculate angle between arrow and cursor
-            const angle = Math.atan2(clientY - arrowY, clientX - arrowX) * (180 / Math.PI);
-            arrow.style.transform = `rotate(${angle}deg)`;
+        footer.addEventListener("mousemove", (event) => {
+            const { clientX, clientY } = event;
+            arrows.forEach((arrow) => {
+                const { left, top, width, height } = arrow.getBoundingClientRect();
+                const angle = Math.atan2(clientY - (top + height / 2), clientX - (left + width / 2)) * (180 / Math.PI);
+                arrow.style.transform = `rotate(${angle}deg)`;
+            });
         });
-    });
-}
+    }
 
+    // ✅ 2. Scroll to Top Button
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
 
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    // ✅ 3. Parallax Effect (Only on Home Page)
+    if (window.location.pathname.replace(window.location.origin, "").replaceAll("/", "").length === 0) {
+        document.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+            const parallaxImg = document.querySelector(".parallax-img");
+            if (parallaxImg) {
+                parallaxImg.style.transform = `translateY(${scrollTop * 0.2}px)`;
+                parallaxImg.style.opacity = Math.max(1 - scrollTop / 800, 0);
+            }
+        });
+    }
 
-// Smooth scroll to top
-scrollToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
+    // ✅ 4. Dark Mode Handling (Auto-Detect System Theme)
+    function applyTheme() {
+        document.documentElement.setAttribute("data-bs-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    }
+    applyTheme();
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
 
-if (window.location.href.replaceAll(window.location.origin, '').replaceAll('/','').length === 0 ) {
+    // ✅ 5. Password Protection (Except on Home Page)
+    const correctPassword = "Paulo-2025";
+    const sessionKey = "portfolioAccess";
+    const modalElement = document.getElementById("passwordModal");
+    const modal = modalElement ? new bootstrap.Modal(modalElement) : null;
+    const passwordInput = document.getElementById("passwordInput");
+    const errorMessage = document.getElementById("error-message");
+    const submitBtn = document.getElementById("submitBtn");
 
-    document.addEventListener("scroll", function () {
-        const scrollTop = window.scrollY;
-        const parallaxImg = document.querySelector(".parallax-img");
+    function isHomePage() {
+        return window.location.pathname === "/" || window.location.pathname.endsWith("/index.html");
+    }
 
-        // Moves the image at a slower pace (adjust multiplier for effect strength)
-        parallaxImg.style.transform = `translateY(${scrollTop * 0.2}px)`;
+    function showModal() {
+        if (modal) {
+            modal.show();
+            setTimeout(() => passwordInput?.focus(), 300);
+        }
+    }
 
-        // Fade effect: Reduce opacity as user scrolls down
-        let opacity = 1 - scrollTop / 800; // Adjust 600 for fade speed
-        parallaxImg.style.opacity = opacity > 0 ? opacity : 0;
-    });
-    
-}
+    function hideModal() {
+        if (modal) modal.hide();
+    }
 
-// Check system preference
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-} else {
-    document.documentElement.setAttribute("data-bs-theme", "light");
-}
+    function checkPassword() {
+        if (!passwordInput) return;
+        if (passwordInput.value.trim() === correctPassword) {
+            sessionStorage.setItem(sessionKey, "granted");
+            hideModal();
+        } else {
+            showErrorMessage();
+        }
+    }
 
-// Listen for changes (auto-switch)
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
-    document.documentElement.setAttribute("data-bs-theme", event.matches ? "dark" : "light");
-});
-
-//Password
-const correctPassword = "Paulo-2025";
-const sessionKey = "portfolioAccess";
-let modalElement = document.getElementById("passwordModal");
-let modal = new bootstrap.Modal(modalElement);
-let passwordInput = document.getElementById("passwordInput");
-let errorMessage = document.getElementById("error-message");
-let submitBtn = document.getElementById("submitBtn");
-
-function checkPassword() {
-    const enteredPassword = passwordInput.value;
-
-    if (enteredPassword === correctPassword) {
-        sessionStorage.setItem(sessionKey, "granted");
-        modal.hide();
-    } else {
+    function showErrorMessage() {
+        if (!errorMessage || !modalElement) return;
         errorMessage.classList.remove("visually-hidden");
         modalElement.classList.add("shake");
-        passwordInput.setAttribute("aria-invalid", "true");  // Screen readers detect invalid input
-        passwordInput.focus();  // Keep focus on input field
+        passwordInput.setAttribute("aria-invalid", "true");
+        passwordInput.focus();
         setTimeout(() => modalElement.classList.remove("shake"), 300);
     }
-}
 
-function checkAccess() {
-    if (sessionStorage.getItem(sessionKey) === "granted") {
-        
-    } else {
-        modal.show();
-        setTimeout(() => passwordInput.focus(), 500);  // Auto-focus input when modal opens
+    function checkAccess() {
+        if (!isHomePage() && !sessionStorage.getItem(sessionKey)) {
+            showModal();
+        }
     }
-}
 
-document.addEventListener("DOMContentLoaded", checkAccess);
-submitBtn.addEventListener("click", checkPassword);
-passwordInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") checkPassword();  // Allow Enter key to submit
-});
+    document.addEventListener("DOMContentLoaded", () => {
+        if (modalElement) {
+            checkAccess();
+            submitBtn?.addEventListener("click", checkPassword);
+            passwordInput?.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") checkPassword();
+            });
+        }
+    });
 
+    // ✅ 6. Fun Console Easter Egg
+    console.log("Hey there, inspector! 🕵️‍♂️ I’m just a non-developer trying my hand at creating my online portfolio 😅. Let me know if you’re taking a peek!");
 
-
-console.log("Hey there, inspector! 🕵️‍♂️ I’m just a non-developer trying my hand at creating my online portfolio 😅. Let me know if you’re taking a peek!");
+})();

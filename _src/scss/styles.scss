@@ -555,9 +555,12 @@ footer{
         .arrow {
             font-size: 1.5rem;
         }
+       
+    }
+    @include media-breakpoint-up(xl) {
         ul{
             width: 50%;
-        }           
+        }            
     }
 }
 
@@ -659,7 +662,6 @@ footer{
             margin: 0 0 .5rem;
             font-size: 1rem;
             line-height: 1.5rem;
-            font-style: italic;
             font-weight: 400;
             & + p{
                 font-size: .75rem;
@@ -863,6 +865,9 @@ footer{
             }
         }
     }
+    .modal-backdrop{
+        background-color: $primary;
+    }
 }
 
 /* Password modal */
@@ -926,6 +931,26 @@ footer{
             justify-content: flex-start;
             .btn{
                 margin: 0;
+                width: 100%;
+            }
+            a{
+                font-size: .75rem;
+                line-height: 1.5rem;
+                border-bottom: 1px dotted $gray-600;
+                text-decoration: none;
+                margin: .5rem 0 0;
+            }
+        }
+    }
+    @include media-breakpoint-up(sm) {
+        .modal-content{
+            .modal-footer{
+                .btn{
+                    width: inherit;
+                }
+                a{
+                    margin: 0 0 0 1rem;    
+                }
             }
         }
     }

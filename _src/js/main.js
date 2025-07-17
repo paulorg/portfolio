@@ -62,65 +62,6 @@
     applyTheme();
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
 
-    // ✅ 5. Password Protection (Except on Home Page)
-    const correctPassword = "Paulo-2025";
-    const sessionKey = "portfolioAccess";
-    const modalElement = document.getElementById("passwordModal");
-    const modal = modalElement ? new bootstrap.Modal(modalElement) : null;
-    const passwordInput = document.getElementById("passwordInput");
-    const errorMessage = document.getElementById("error-message");
-    const submitBtn = document.getElementById("submitBtn");
-
-    function isHomePage() {
-        return window.location.pathname === "/" || window.location.pathname.endsWith("/index.html");
-    }
-
-    function showModal() {
-        if (modal) {
-            modal.show();
-            setTimeout(() => passwordInput?.focus(), 300);
-        }
-    }
-
-    function hideModal() {
-        if (modal) modal.hide();
-    }
-
-    function checkPassword() {
-        if (!passwordInput) return;
-        if (passwordInput.value.trim() === correctPassword) {
-            sessionStorage.setItem(sessionKey, "granted");
-            hideModal();
-        } else {
-            showErrorMessage();
-        }
-    }
-
-    function showErrorMessage() {
-        if (!errorMessage || !modalElement) return;
-        errorMessage.classList.remove("visually-hidden");
-        modalElement.classList.add("shake");
-        passwordInput.setAttribute("aria-invalid", "true");
-        passwordInput.focus();
-        setTimeout(() => modalElement.classList.remove("shake"), 300);
-    }
-
-    function checkAccess() {
-        if (!isHomePage() && !sessionStorage.getItem(sessionKey)) {
-            showModal();
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        if (modalElement) {
-            checkAccess();
-            submitBtn?.addEventListener("click", checkPassword);
-            passwordInput?.addEventListener("keypress", (e) => {
-                if (e.key === "Enter") checkPassword();
-            });
-        }
-    });
-
     // ✅ 6. Fun Console Easter Egg
     console.log("Hey there, inspector! 🕵️‍♂️ I’m just a non-developer trying my hand at creating my online portfolio 😅. Let me know if you’re taking a peek!");
 
